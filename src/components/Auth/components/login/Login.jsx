@@ -98,7 +98,7 @@ const Login = () => {
           variant="outlined"
           margin="normal"
           fullWidth
-          value={"aniket1@gmail.com"}
+         
           {...register("username", { required: "Email is required" })}
           error={!!errors.username}
           helperText={errors.username ? errors.username.message : ""}
@@ -108,7 +108,7 @@ const Login = () => {
           type="password"
           variant="outlined"
           margin="normal"
-          value={"password"}
+          
           fullWidth
           {...register("password", { required: "Password is required" })}
           error={!!errors.password}
