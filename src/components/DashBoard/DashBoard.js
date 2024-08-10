@@ -25,6 +25,7 @@ const DashBoard = () => {
   } else {
     return (
       <>
+      
         <Header />
         
         <div>Medical Store</div>
