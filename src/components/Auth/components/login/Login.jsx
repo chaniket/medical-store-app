@@ -1,5 +1,5 @@
 // src/LoginPage.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import {
@@ -36,7 +36,7 @@ const StyledContainer = styled(Container)(({ theme }) => ({
 }));
 
 const Login = () => {
-  const navigate = useNavigate();
+ // const navigate = useNavigate();
   const log = "Login component ";
   const {
     register,
@@ -47,7 +47,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [authenticated, setAuthenticated] = useState(
-    localStorage.getItem(localStorage.getItem("authenticated") || false)
+    sessionStorage.getItem(sessionStorage.getItem("authenticated") || false)
   );
 
   const currentBaseUrl = useSelector((state) => state.baseUrl);
@@ -55,6 +55,16 @@ const Login = () => {
   const dispatch = useDispatch();
   console.log(log + currentBaseUrl);
   console.log(log + currentAppAuthToken);
+
+  useEffect(()=>{
+    const reloadLogin = sessionStorage.getItem("reloadLogin");
+    if(reloadLogin !== null && reloadLogin !==undefined && reloadLogin === "true"){
+      sessionStorage.setItem("reloadLogin", false);
+      console.log(log+" windows is reloaded!");
+      window.location.reload();
+    }
+
+  },[]);
 
   const onSubmit = async (data) => {
     setLoading(true);
@@ -68,10 +78,11 @@ const Login = () => {
       // Handle successful login
       console.log("Login successful:", response.data);
       setAuthenticated(true);
-      localStorage.setItem("authenticated", true);
+      sessionStorage.setItem("authenticated", true);
       dispatch(LoginAuthToken(response.data.authToken));
-      navigate("dashboard");
-      //return <Navigate replace to="/dashboard" />;
+      //navigate("user/dashboard");
+      window.location.assign("user");
+      //return <Navigate replace to="user/dashboard" />;
       /*      return (
         <>
           <DashBoard />
@@ -79,7 +90,7 @@ const Login = () => {
       ); */
     } catch (error) {
       setAuthenticated(false);
-      localStorage.setItem("authenticated", false);
+      sessionStorage.setItem("authenticated", false);
       // Handle login error
       setErrorMessage("Invalid email or password");
     } finally {
@@ -98,7 +109,7 @@ const Login = () => {
           variant="outlined"
           margin="normal"
           fullWidth
-         value={"aniket1@gmail.com"}
+          value={"aniket1@gmail.com"}
           {...register("username", { required: "Email is required" })}
           error={!!errors.username}
           helperText={errors.username ? errors.username.message : ""}

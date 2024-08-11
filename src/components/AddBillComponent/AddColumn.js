@@ -6,4 +6,4 @@ const AddColumn = () => {
   )
 }
 
-export default AddColumn
+export default AddColumn;

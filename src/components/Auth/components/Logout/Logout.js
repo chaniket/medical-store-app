@@ -8,9 +8,16 @@ const Logout = () => {
   const currentAppAuthToken = useSelector((state) => state.appAuthToken);
   const dispatch = useDispatch();
 
+  let rowEle = document.getElementsByClassName("hideHeaderAfterLogout");
+  for (let i = 0; i < rowEle.length; i++) {
+    rowEle[i].style.display = "none";
+  }
+
   useEffect(() => {
-    localStorage.setItem("authenticated", false);
+    sessionStorage.setItem("authenticated", false);
+    sessionStorage.setItem("reloadLogin", true);
     dispatch(LoginAuthToken(""));
+    sessionStorage.removeItem("authenticated");
   }, []);
 
   return <Navigate replace to="/" />;

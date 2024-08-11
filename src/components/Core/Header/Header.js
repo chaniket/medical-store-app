@@ -15,14 +15,14 @@ const Header = () => {
   return (
     <>
     <Stack direction={"column"}>
-      <header className="header">
+      <header className="header hideHeaderAfterLogout">
         <nav className="nav">
           <ul className="nav-list">
             <li className="nav-item">
               <NavLink
                 className="nav-link"
                 exact="true"
-                to="/"
+                to="/dashboard"
                 activeclassname="active"
               >
                 {

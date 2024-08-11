@@ -22,22 +22,7 @@ const theme = createTheme();
 root.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<App />} />
-          <Route path="login" element={<Login />} />
-          <Route path="dashboard" element={<DashBoard />} />
-
-          <Route path="/add" element={<AddBill />}>
-            <Route index element={<AddBill />}></Route>
-            <Route path="addRow" element={<AddRow />}></Route>
-            <Route path="addColumn" element={<AddColumn />}></Route>
-          </Route>
-
-          <Route path="logout" element={<Logout />} />
-          <Route path="*" element={<Error404Page />} />
-        </Routes>
-      </BrowserRouter>
+      <App />
     </ThemeProvider>
   </Provider>
 );

@@ -26,12 +26,13 @@ import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import InputGroup from "react-bootstrap/InputGroup";
-import { Form } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { v4 as uuid } from "uuid";
 import AddedBillMedList from "./AddedBillMedList";
 import PostCustomerData,{ GetCustomerData } from "./Api/AddBillApiService.js";
+import AddBillHeader from "./AddBillHeader.js";
+
 
 //import apiService from "./Api/AddBillApiService";
 //const { getCustomerData, postCustomerData } = apiService;
@@ -208,11 +209,13 @@ const AddBill = () => {
 
   return (
     <>
+    
+      
       <ToastContainer />
       {/*JSON.stringify(addBillMedList)*/}
       <StyledContainer maxWidth="lg">
-        <Typography variant="h4" component="h1" gutterBottom>
-          Medical Store Login
+        <Typography variant="h4" component="h3" gutterBottom>
+          Medical Store Generate Bill
         </Typography>
         <div
           style={{ width: "100%", justifyContent: "center", marginLeft: "10%" }}
